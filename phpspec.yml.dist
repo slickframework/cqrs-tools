@@ -1,4 +1,4 @@
 suites:
   slick_cqrs_tools_suite:
-    namespace: Slick\CQRS-Tools
-    psr4_prefix: Slick\CQRS-Tools
+    namespace: Slick\CQRSTools
+    psr4_prefix: Slick\CQRSTools
