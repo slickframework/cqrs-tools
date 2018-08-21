@@ -9,7 +9,7 @@
     "DDD",
     "CQRS"
   ],
-  "version": "v0.1.0",
+  "version": "v0.2.0",
   "minimum-stability": "dev",
   "authors": [
     {
@@ -20,11 +20,14 @@
   ],
   "autoload": {
     "psr-4": {
-      "Slick\\CQRS-Tools\\": "src/"
+      "Slick\\CQRSTools\\": "src/"
     }
   },
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.1",
+    "ext-json": "*",
+    "league/event": "^2.2@dev",
+    "ramsey/uuid": "3.x-dev"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0@dev",
@@ -32,8 +35,8 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.1-dev",
-      "dev-develop": "0.2-dev"
+      "dev-master": "0.2-dev",
+      "dev-develop": "0.3-dev"
     }
   },
   "scripts": {
