@@ -11,7 +11,7 @@ namespace spec\Slick\CQRSTools\Event;
 
 use DateTimeImmutable;
 use Slick\CQRSTools\Domain\AggregateRootIdentifier;
-use Slick\CQRSTools\Domain\Events\EventId;
+use Slick\CQRSTools\Domain\Event\EventId;
 use Slick\CQRSTools\Event\AbstractEvent;
 use PhpSpec\ObjectBehavior;
 
@@ -77,5 +77,15 @@ class AcmeEvent extends AbstractEvent
         return [
             'happens' => $this->happens()
         ];
+    }
+
+    /**
+     * Used to unserialize from a stored event
+     *
+     * @param mixed $data
+     */
+    public function unserializeEvent($data): void
+    {
+        $this->happens = $data->happens;
     }
 }

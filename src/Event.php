@@ -13,7 +13,7 @@ use DateTimeImmutable;
 use JsonSerializable;
 use League\Event\EventInterface;
 use Slick\CQRSTools\Domain\AggregateRootIdentifier;
-use Slick\CQRSTools\Domain\Events\EventId;
+use Slick\CQRSTools\Domain\Event\EventId;
 
 /**
  * Interface Event
@@ -42,4 +42,11 @@ interface Event extends EventInterface, JsonSerializable
      * @return null|AggregateRootIdentifier
      */
     public function author(): ?AggregateRootIdentifier;
+
+    /**
+     * Used to unserialize from a stored event
+     *
+     * @param mixed $data
+     */
+    public function unserializeEvent($data): void;
 }

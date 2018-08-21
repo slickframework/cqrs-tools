@@ -69,7 +69,7 @@ abstract class AggregateRootIdentifier implements Stringable, Comparable, JsonSe
     public function equalsTo($other): bool
     {
         $sameType = is_object($other) && is_a($other, get_called_class());
-        return $sameType && $this->uuid->equals($other);
+        return $sameType && $this->uuid->equals($other->uuid);
     }
 
     /**

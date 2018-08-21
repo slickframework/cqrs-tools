@@ -7,21 +7,21 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Slick\CQRSTools\Domain\Events;
+namespace spec\Slick\CQRSTools\Domain\Event;
 
 use JsonSerializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Slick\CQRSTools\Domain\Common\Comparable;
 use Slick\CQRSTools\Domain\Common\Stringable;
-use Slick\CQRSTools\Domain\Events\EventId;
+use Slick\CQRSTools\Domain\Event\EventId;
 use PhpSpec\ObjectBehavior;
 use Slick\CQRSTools\Domain\Exception\IdentifierCreationException;
 
 /**
  * EventIdSpec specs
  *
- * @package spec\Slick\CQRSTools\Domain\Events
+ * @package spec\Slick\CQRSTools\Domain\Event
  */
 class EventIdSpec extends ObjectBehavior
 {

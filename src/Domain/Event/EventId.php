@@ -7,14 +7,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Slick\CQRSTools\Domain\Events;
+namespace Slick\CQRSTools\Domain\Event;
 
 use Slick\CQRSTools\Domain\AggregateRootIdentifier;
 
 /**
  * EventId
  *
- * @package Slick\CQRSTools\Domain\Events
+ * @package Slick\CQRSTools\Domain\Event
 */
 final class EventId extends AggregateRootIdentifier
 {

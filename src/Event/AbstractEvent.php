@@ -13,7 +13,7 @@ use DateTimeImmutable;
 use Exception;
 use League\Event\AbstractEvent as LeagueEvent;
 use Slick\CQRSTools\Domain\AggregateRootIdentifier;
-use Slick\CQRSTools\Domain\Events\EventId;
+use Slick\CQRSTools\Domain\Event\EventId;
 use Slick\CQRSTools\Event;
 use Slick\CQRSTools\Exception\FailToCreateDateException;
 
@@ -93,4 +93,11 @@ abstract class AbstractEvent extends LeagueEvent implements Event
      *               which is a value of any type other than a resource.
      */
     abstract public function jsonSerialize();
+
+    /**
+     * Used to unserialize from a stored event
+     *
+     * @param mixed $data
+     */
+    abstract public function unserializeEvent($data): void;
 }
