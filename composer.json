@@ -9,7 +9,7 @@
     "DDD",
     "CQRS"
   ],
-  "version": "v0.1.0",
+  "version": "v0.2.0",
   "minimum-stability": "dev",
   "authors": [
     {
@@ -35,8 +35,8 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.1-dev",
-      "dev-develop": "0.2-dev"
+      "dev-master": "0.2-dev",
+      "dev-develop": "0.3-dev"
     }
   },
   "scripts": {
