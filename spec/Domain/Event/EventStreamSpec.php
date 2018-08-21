@@ -14,6 +14,7 @@ use Countable;
 use IteratorAggregate;
 use Slick\CQRSTools\Domain\Event\EventStream;
 use PhpSpec\ObjectBehavior;
+use Slick\CQRSTools\Domain\Event\StoredEvent;
 use Slick\CQRSTools\Event;
 
 /**
@@ -63,5 +64,12 @@ class EventStreamSpec extends ObjectBehavior
     function it_returns_null_for_first_call_when_empty()
     {
         $this->first()->shouldBe(null);
+    }
+
+    function it_unwraps_stored_events(StoredEvent $storedEvent, Event $event)
+    {
+        $storedEvent->event()->willReturn($event);
+        $this->add($storedEvent);
+        $this->first()->shouldBe($event);
     }
 }

@@ -30,6 +30,7 @@ final class EventStream implements IteratorAggregate, Countable
      * Creates an Event Stream
      *
      * @param array $events
+     * @throws \ReflectionException
      */
     public function __construct(array $events = [])
     {
@@ -41,12 +42,14 @@ final class EventStream implements IteratorAggregate, Countable
     /**
      * Adds an event to the stream
      *
-     * @param Event $event
+     * @param Event|StoredEvent $event
      *
      * @return EventStream
+     * @throws \ReflectionException
      */
     public function add(Event $event): EventStream
     {
+        $event = $event instanceof StoredEvent ? $event->event() : $event;
         array_push($this->events, $event);
         return $this;
     }

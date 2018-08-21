@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `Event` interface
 - Event generation and publishing system
+- `EventStore` and `EventStoreListener`
+- StoredEvent serialization
 - Common domain tools: `Stringable` and `Comparable` interfaces
 - `AggregateRootIdentifier` abstract class
 
