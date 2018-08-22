@@ -75,7 +75,7 @@ abstract class AggregateRootIdentifier implements Stringable, Comparable, JsonSe
     /**
      * String version of UUID that will be converted to a JSON string
      *
-     * @return mixed data which can be serialized by json_encode(),
+     * @return string data which can be serialized by json_encode(),
      *               which is a value of any type other than a resource.
      */
     public function jsonSerialize()
