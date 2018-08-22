@@ -6,7 +6,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-`Slick/CQRS` is an useful library for Event Souring style applications. It has a collection of tools that can speed up
+`Slick/CQRSTools` is an useful library for Event Souring style applications. It has a collection of tools that can speed up
 Domain Driven Development and CQRS development.
 
 This package is compliant with PSR-2 code standards and PSR-4 autoload standards. It
