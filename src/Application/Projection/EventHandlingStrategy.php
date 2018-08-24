@@ -26,5 +26,4 @@ interface EventHandlingStrategy
      * @param Projector   $projector
      */
     public function handle(Event $event, Projector $projector): void;
-
 }

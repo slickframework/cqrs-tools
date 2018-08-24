@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "157ff1ab68af1d3871c8e9bfeb1e8303",
+    "content-hash": "bceee58fe180cdfc6a8041694e60bf25",
     "packages": [
         {
             "name": "league/event",
@@ -927,12 +927,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4d884390e0962ee864b481f4df37f1e3077c5464"
+                "reference": "89150c86d70a370059327b149b0363a979aa5c9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4d884390e0962ee864b481f4df37f1e3077c5464",
-                "reference": "4d884390e0962ee864b481f4df37f1e3077c5464",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/89150c86d70a370059327b149b0363a979aa5c9e",
+                "reference": "89150c86d70a370059327b149b0363a979aa5c9e",
                 "shasum": ""
             },
             "require": {
@@ -970,7 +970,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-08-20T04:52:58+00:00"
+            "time": "2018-08-24T04:22:58+00:00"
         },
         {
             "name": "symfony/console",
@@ -1047,12 +1047,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "e2b31a5a237c70e5a12d4862a0c62ec561f970c9"
+                "reference": "42bdc01d6142259e6d5ea6b03f2a03e835319e81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/e2b31a5a237c70e5a12d4862a0c62ec561f970c9",
-                "reference": "e2b31a5a237c70e5a12d4862a0c62ec561f970c9",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/42bdc01d6142259e6d5ea6b03f2a03e835319e81",
+                "reference": "42bdc01d6142259e6d5ea6b03f2a03e835319e81",
                 "shasum": ""
             },
             "require": {
@@ -1095,7 +1095,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-08-03T11:20:06+00:00"
+            "time": "2018-08-21T12:03:16+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
