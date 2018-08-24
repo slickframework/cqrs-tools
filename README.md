@@ -6,8 +6,8 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-`Slick/CQRS` is an useful library for Event Souring style applications. It has a collection of tools that can speed up
-Domain Driven Development and CQRS development.
+`Slick/CQRSTools` is an useful library for Event Souring style applications. It has a collection of tools that can speed up
+development using Domain Driven Development and CQRS techniques.
 
 This package is compliant with PSR-2 code standards and PSR-4 autoload standards. It
 also applies the [semantic version 2.0.0](http://semver.org) specification.
@@ -19,6 +19,121 @@ Via Composer
 ``` bash
 $ composer require slick/cqrs-tools
 ```
+
+## Usage
+### Creating events
+Events are a simple and descriptive way of recording some action that was done. They usually have some
+metadata and the values that were used to change the domain.
+Consider the event of creating a user:
+```php
+<?php
+
+use Ramsey\Uuid\Uuid;
+use Slick\CQRSTools\Event\AbstractEvent;
+use Slick\CQRSTools\Event;
+
+class UserWasCreated extends AbstractEvent implements Event
+{
+    /** @var Uuid */
+    private $userId;
+    
+    /** @var string */
+    private $name;
+    
+    public function __construct(Uuid $userId, string  $name)
+    {
+        parent::__construct();
+        $this->userId = $userId;
+        $this->name = $name;
+    }
+    
+    public function jsonSerialize()
+    {
+        return [
+            'userId' => $this->userId,
+            'name' => $this->name    
+        ];
+    }
+    
+    public function unserializeEvent($data): void
+    {
+        $this->userId = Uuid::fromString($data->userId);
+        $this->name = $data->name;
+    }
+    
+}
+```
+The above class defines an `UserWasCreated` event and wraps the ID and name of the crated user. There are
+3 more fields, consider metadata, for every event that extends the `AbstractEvent` abstract class: `EventId`, `Author`
+and `OccurredOn` with holds the unique event ID, an optional author (user, service, etc...) ID and the date
+and time the event has occurred. 
+Note that you need to implement a `jsonSerialize()` and `unserializeEvent()`. Those methods are used
+to publish the event to other services like a database or a message queue and to unserialize the event
+from those services.
+The metadata fields are serialized and unserialized automatically and you don't need to include them in those
+methods.  
+
+
+### Recording events with generators
+All changes to your domain should generate an event. Therefore a simple way of achieving this is add
+such behavior to your domain objects.
+Let see an example. Consider the following `User` object:
+```php
+<?php
+
+use Ramsey\Uuid\Uuid;
+
+final class User
+{
+    /** @var Uuid */
+    private $userId;
+    
+    /** @var string */
+    private $name;
+    
+    public function __construct(string $name) {
+        $this->name = $name;
+        $this->userId = Uuid::uuid4();
+    }
+    
+    public function userId(): Uuid
+    {
+        return $this->userId;
+    }
+    
+    public function name(): string
+    {
+        return $this->name;
+    }
+}
+```
+This is a very simple implementation of a domain `User`. Lets consider that every time we create an
+user a `UserWasCreated` event should be created:
+
+```php
+<?php
+
+use Ramsey\Uuid\Uuid;
+use Slick\CQRSTools\Event\EventGenerator;
+use Slick\CQRSTools\Event\EventGeneratorMethods;
+
+final class User implements EventGenerator
+{
+    // ... other code
+    
+    use EventGeneratorMethods;
+    
+    public function __construct(string $name) {
+        $this->name = $name;
+        $this->userId = Uuid::uuid4();
+        // Create the event
+        $this->recordThat(new UserWasCreated($this->userId, $name));
+    }
+    
+}
+
+```
+// Work in progress...
 
 ## Change log
 
