@@ -65,7 +65,7 @@ class UserWasCreated extends AbstractEvent implements Event
 ```
 The above class defines an `UserWasCreated` event and wraps the ID and name of the crated user. There are
 3 more fields, consider metadata, for every event that extends the `AbstractEvent` abstract class: `EventId`, `Author`
-and `OccurredOn` with holds the unique event ID, an optional author (user, service, etc...) ID and the date
+and `OccurredOn` witch holds the unique event ID, an optional author (user, service, etc...) ID and the date
 and time the event has occurred. 
 Note that you need to implement a `jsonSerialize()` and `unserializeEvent()`. Those methods are used
 to publish the event to other services like a database or a message queue and to unserialize the event
@@ -75,9 +75,9 @@ methods.
 
 
 ### Recording events with generators
-All changes to your domain should generate an event. Therefore a simple way of achieving this is add
+All changes to your domain should generate an event. Therefore a simple way of achieving this is by adding
 such behavior to your domain objects.
-Let see an example. Consider the following `User` object:
+Consider the following `User` object:
 ```php
 <?php
 
@@ -108,7 +108,7 @@ final class User
 }
 ```
 This is a very simple implementation of a domain `User`. Lets consider that every time we create an
-user a `UserWasCreated` event should be created:
+user an `UserWasCreated` event should be created:
 
 ```php
 <?php
