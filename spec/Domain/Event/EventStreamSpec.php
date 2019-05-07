@@ -11,10 +11,12 @@ namespace spec\Slick\CQRSTools\Domain\Event;
 
 use ArrayIterator;
 use Countable;
+use Iterator;
 use IteratorAggregate;
 use Slick\CQRSTools\Domain\Event\EventStream;
 use PhpSpec\ObjectBehavior;
 use Slick\CQRSTools\Domain\Event\StoredEvent;
+use Slick\CQRSTools\Domain\Event\Stream;
 use Slick\CQRSTools\Event;
 
 /**
@@ -37,8 +39,8 @@ class EventStreamSpec extends ObjectBehavior
 
     function it_can_be_iterated()
     {
-        $this->shouldBeAnInstanceOf(IteratorAggregate::class);
-        $this->getIterator()->shouldBeAnInstanceOf(ArrayIterator::class);
+        $this->shouldBeAnInstanceOf(Stream::class);
+        $this->shouldBeAnInstanceOf(Iterator::class);
     }
 
     function it_can_be_counted(Event $event, Event $event2)

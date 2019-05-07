@@ -13,6 +13,7 @@ use DateTimeImmutable;
 use Slick\CQRSTools\Domain\Event\EventId;
 use Slick\CQRSTools\Domain\Event\EventStore;
 use Slick\CQRSTools\Domain\Event\EventStream;
+use Slick\CQRSTools\Domain\Event\Stream;
 use Slick\CQRSTools\Domain\Event\StoredEvent;
 use Slick\CQRSTools\Event;
 
@@ -58,7 +59,7 @@ final class ListenerEventStore implements EventStore
      * @return EventStream
      * @throws \ReflectionException
      */
-    public function allStoredEventsSince($startPoint): EventStream
+    public function allStoredEventsSince($startPoint): Stream
     {
         return new EventStream([$this->event]);
     }
@@ -76,7 +77,7 @@ final class ListenerEventStore implements EventStore
      * @return EventStream
      * @throws \ReflectionException
      */
-    public function allStoredEvents(int $limit = 500): EventStream
+    public function allStoredEvents(int $limit = 500): Stream
     {
         return new EventStream([$this->event]);
     }

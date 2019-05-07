@@ -10,6 +10,7 @@
 namespace Slick\CQRSTools\Domain\Event;
 
 use DateTimeImmutable;
+use Slick\CQRSTools\Domain\Event\Stream as EventStream;
 
 /**
  * EventStore
