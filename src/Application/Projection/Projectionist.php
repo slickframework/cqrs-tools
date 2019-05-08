@@ -13,6 +13,7 @@ use DateTimeImmutable;
 use Exception;
 use Slick\CQRSTools\Domain\Event\EventStore;
 use Slick\CQRSTools\Domain\Event\EventStream;
+use Slick\CQRSTools\Domain\Event\Stream;
 use Slick\CQRSTools\Domain\Projection\ProjectorState;
 use Slick\CQRSTools\Domain\Projection\ProjectorStateLedger;
 
@@ -21,8 +22,11 @@ use Slick\CQRSTools\Domain\Projection\ProjectorStateLedger;
  *
  * @package Slick\CQRSTools\Application\Projection
 */
-final class Projectionist
+final class Projectionist implements ProgressStateProvider
 {
+
+    use ProgressStateProviderMethods;
+
     /**
      * @var EventStore
      */
@@ -128,15 +132,21 @@ final class Projectionist
         }
 
         $this->secureProjector($projectorState);
+        $this->notifyMaxSteps($eventStream->count());
+
         foreach ($eventStream as $event) {
             try {
-                $this->strategy->handle($event, $projector);
+                if ($this->strategy->handle($event, $projector)) {
+                    $this->notifyHandledEvent();
+                }
                 $projectorState->lastEventWas($event);
             } catch (Exception $caught) {
                 $projectorState->halt($caught->getMessage().' EventId: '.$event->eventId());
                 break;
             }
+            $this->notifyAdvance();
         }
+        $this->notifyFinish();
         $this->releaseProjector($projectorState);
     }
 
@@ -148,7 +158,7 @@ final class Projectionist
      * @return EventStream
      * @throws Exception
      */
-    private function eventStream(ProjectorState $projectorState): EventStream
+    private function eventStream(ProjectorState $projectorState): Stream
     {
         switch ($projectorState->projectorRunsFrom()) {
             case Projector::RUN_FROM_NOW:

@@ -23,7 +23,9 @@ interface EventHandlingStrategy
      * Handles the event processing into projector
      *
      * @param Event $event
-     * @param Projector   $projector
+     * @param Projector $projector
+     *
+     * @return bool True if event will be handled, false otherwise
      */
-    public function handle(Event $event, Projector $projector): void;
+    public function handle(Event $event, Projector $projector): bool;
 }

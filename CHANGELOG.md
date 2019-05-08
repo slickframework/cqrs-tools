@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `ProgressStateProvider` interface to enable projectionist progress state notifications
+- `ProgressStateListener` interface that specifies the projectionist state changes listener
+### Fixed
+- Type hint bug on projectionist
 
 ## [v0.4.0] 2019-05-07
 ### Added

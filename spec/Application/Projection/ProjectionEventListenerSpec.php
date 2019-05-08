@@ -9,12 +9,12 @@
 
 namespace spec\Slick\CQRSTools\Application\Projection;
 
+use League\Event\EventInterface;
+use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Slick\CQRSTools\Application\Projection\EventHandlingStrategy;
 use Slick\CQRSTools\Application\Projection\ProjectionEventListener;
-use PhpSpec\ObjectBehavior;
 use Slick\CQRSTools\Application\Projection\Projector;
-use Slick\CQRSTools\Domain\Event\EventId;
 use Slick\CQRSTools\Domain\Projection\ProjectorState;
 use Slick\CQRSTools\Domain\Projection\ProjectorStateLedger;
 use Slick\CQRSTools\Event;
@@ -46,6 +46,10 @@ class ProjectionEventListenerSpec extends ObjectBehavior
 
         $this->event = new SimpleEvent();
         $this->projectorState->lastEventWas($this->event);
+
+        /** @var Event $event */
+        $event = Argument::type(EventInterface::class);
+        $strategy->handle($event, $projector)->willReturn(true);
 
         $this->beConstructedWith([$projector], $strategy, $ledger);
     }

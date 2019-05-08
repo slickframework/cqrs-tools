@@ -25,10 +25,12 @@ final class GreedyStrategy implements EventHandlingStrategy
     /**
      * Handles the event processing into projector
      *
-     * @param Event     $event
+     * @param Event $event
      * @param Projector $projector
+     *
+     * @return bool
      */
-    public function handle(Event $event, Projector $projector): void
+    public function handle(Event $event, Projector $projector): bool
     {
         if (! $projector instanceof GreedyProjector) {
             throw new InvalidProjectorUsageException(
@@ -37,5 +39,6 @@ final class GreedyStrategy implements EventHandlingStrategy
         }
 
         $projector->handle($event);
+        return true;
     }
 }

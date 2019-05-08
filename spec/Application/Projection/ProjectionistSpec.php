@@ -9,8 +9,12 @@
 
 namespace spec\Slick\CQRSTools\Application\Projection;
 
+use League\Event\EventInterface;
 use PhpSpec\Exception\Example\FailureException;
+use Prophecy\Argument;
 use Slick\CQRSTools\Application\Projection\EventHandlingStrategy;
+use Slick\CQRSTools\Application\Projection\ProgressStateListener;
+use Slick\CQRSTools\Application\Projection\ProgressStateProvider;
 use Slick\CQRSTools\Application\Projection\Projectionist;
 use PhpSpec\ObjectBehavior;
 use Slick\CQRSTools\Application\Projection\Projector;
@@ -62,6 +66,10 @@ class ProjectionistSpec extends ObjectBehavior
         $ledger->update($this->projectorState)->willReturn(clone($this->projectorState));
 
         $eventStore->allStoredEventsSince($this->eventId)->willReturn(new EventStream([$event->getWrappedObject()]));
+
+        /** @var Event $event */
+        $event = Argument::type(EventInterface::class);
+        $strategy->handle($event, $projector)->willReturn(true);
 
         $this->beConstructedWith($eventStore, $ledger, $strategy);
     }
@@ -152,5 +160,21 @@ class ProjectionistSpec extends ObjectBehavior
                 "Expected failure reason to be '{$reason}', but got {$this->projectorState->whyIsHalted()}..."
             );
         }
+    }
+
+    function it_can_have_progress_listeners(ProgressStateListener $listener)
+    {
+        $this->shouldBeAnInstanceOf(ProgressStateProvider::class);
+        $this->register($listener)->shouldBe($this->getWrappedObject());
+    }
+
+    function it_notify_the_total_progress_steps(ProgressStateListener $listener, Projector $projector)
+    {
+        $this->register($listener);
+        $this->play([$projector]);
+        $listener->setMaxSteps(1)->shouldHaveBeenCalled();
+        $listener->advance(1)->shouldHaveBeenCalled();
+        $listener->finish()->shouldHaveBeenCalled();
+        $listener->addProcessedEvents(1)->shouldHaveBeenCalled();
     }
 }
