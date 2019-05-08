@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.5.0] 2019-05-08
+### Added
+- `ProgressStateProvider` interface to enable projectionist progress state notifications
+- `ProgressStateListener` interface that specifies the projectionist state changes listener
+### Fixed
+- Type hint bug on projectionist
+
 ## [v0.4.0] 2019-05-07
 ### Added
 - Event stream interface to allow other stream implementations
@@ -34,7 +41,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial composer definitions.
 - PHPSpec bootstrap
 
-[Unreleased]: https://github.com/slickframework/cqrs-tools/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/slickframework/cqrs-tools/compare/v0.5.0...HEAD
+[v0.5.0]: https://github.com/slickframework/cqrs-tools/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/slickframework/cqrs-tools/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/slickframework/cqrs-tools/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/slickframework/cqrs-tools/compare/v0.1.0...v0.2.0

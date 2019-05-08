@@ -23,16 +23,21 @@ final class MethodNameStrategy implements EventHandlingStrategy
     /**
      * Handles the event processing into projector
      *
-     * @param Event     $event
+     * @param Event $event
      * @param Projector $projector
+     *
+     * @return bool
      */
-    public function handle(Event $event, Projector $projector): void
+    public function handle(Event $event, Projector $projector): bool
     {
         $classNamespaces = explode("\\", get_class($event));
         $eventName = end($classNamespaces);
         $methodName = "when{$eventName}";
         if (method_exists($projector, $methodName)) {
             $projector->$methodName($event);
+            return true;
         }
+
+        return false;
     }
 }
