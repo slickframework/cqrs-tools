@@ -10,6 +10,7 @@
 namespace Slick\CQRSTools\Domain\Event;
 
 use ReflectionClass;
+use Slick\CQRSTools\Domain\GenericRootIdentifier;
 use Slick\CQRSTools\Event;
 use Slick\CQRSTools\Event\AbstractEvent;
 
@@ -99,9 +100,10 @@ class StoredEvent extends AbstractEvent implements Event
         $reflection = new ReflectionClass($this->eventClassName);
         /** @var Event $event */
         $event = $reflection->newInstanceWithoutConstructor();
+        $author = $this->author ? new GenericRootIdentifier((string) $this->author) : null;
 
         $properties = [
-            'author' => $this->author, 'occurredOn' => $this->occurredOn, 'eventId' => $this->eventId
+            'author' => $author, 'occurredOn' => $this->occurredOn, 'eventId' => $this->eventId
         ];
         $event = $this->assignProperties($reflection, $properties, $event);
         $event->unserializeEvent(json_decode($this->data));

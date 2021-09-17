@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.6.0] 2021-09-17
+### Added
+- `GenericRootIdentifier` to hold the author identifier when event has been restored from
+  an event data store.
+
 ## [v0.5.0] 2019-05-08
 ### Added
 - `ProgressStateProvider` interface to enable projectionist progress state notifications

@@ -12,6 +12,7 @@ namespace spec\Slick\CQRSTools\Domain\Event;
 use Slick\CQRSTools\Domain\Event\EventId;
 use Slick\CQRSTools\Domain\Event\StoredEvent;
 use PhpSpec\ObjectBehavior;
+use Slick\CQRSTools\Domain\GenericRootIdentifier;
 use Slick\CQRSTools\Event;
 
 /**
