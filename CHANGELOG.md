@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.6.1] 2021-09-18
+### Changed
+- `GenericRootIdentifier` now accepts any string by removing UUID validation 
+
 ## [v0.6.0] 2021-09-17
 ### Added
 - `GenericRootIdentifier` to hold the author identifier when event has been restored from
@@ -46,7 +50,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial composer definitions.
 - PHPSpec bootstrap
 
-[Unreleased]: https://github.com/slickframework/cqrs-tools/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/slickframework/cqrs-tools/compare/v0.6.1...HEAD
+[v0.6.1]: https://github.com/slickframework/cqrs-tools/compare/v0.6.0...v0.6.1
+[v0.6.0]: https://github.com/slickframework/cqrs-tools/compare/v0.5.0...v0.6.0
 [v0.5.0]: https://github.com/slickframework/cqrs-tools/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/slickframework/cqrs-tools/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/slickframework/cqrs-tools/compare/v0.2.0...v0.3.0

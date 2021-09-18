@@ -78,7 +78,7 @@ abstract class AggregateRootIdentifier implements Stringable, Comparable, JsonSe
      * @return string data which can be serialized by json_encode(),
      *               which is a value of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): string
     {
         return (string) $this->uuid;
     }
@@ -94,7 +94,7 @@ abstract class AggregateRootIdentifier implements Stringable, Comparable, JsonSe
     }
 
     /**
-     * Creates an UUID with provided UUID string
+     * Creates a UUID with provided UUID string
      *
      * @param string $uuidStr
      *
