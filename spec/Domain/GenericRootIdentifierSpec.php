@@ -44,4 +44,15 @@ class GenericRootIdentifierSpec extends ObjectBehavior
     {
         $this->wrappedUuid()->__toString()->shouldBe($this->uuidStr);
     }
+
+    function it_can_be_created_with_any_string()
+    {
+        $id = '2000010000';
+        $this->beConstructedWith($id);
+        $this->__toString()->shouldBe($id);
+        $this->equalsTo(new GenericRootIdentifier($id))->shouldBe(true);
+        $this->equalsTo($id)->shouldBe(false);
+        $this->equalsTo(new GenericRootIdentifier())->shouldBe(false);
+        $this->jsonSerialize()->shouldBe($id);
+    }
 }
